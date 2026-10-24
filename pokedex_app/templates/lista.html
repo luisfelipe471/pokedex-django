@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - Lista</title>
+    <link rel="stylesheet" href="{% static 'pokedex_app/style.css' %}">
+</head>
+<body>
+    <div class="estrutura-pagina">
+        <div class="cartao-pagina">
+            <div class="acoes-pagina">
+                <h1 class="titulo-pagina">Lista de Pokémon</h1>
+                <a class="botao-link" href="{% url 'buscar_pokemon' %}">Voltar à busca</a>
+            </div>
+            <p class="subtitulo-pagina">Explore a coleção completa e acesse seus favoritos em poucos cliques.</p>
+            {% if erro %}<p class="mensagem-erro">{{ erro }}</p>{% endif %}
+            <ul class="lista-pokemon">
+                {% for pokemon in pagina %}
+                    <li>
+                        <a href="{% url 'buscar_pokemon' %}?nome={{ pokemon.name }}">
+                            <span class="indice-pokemon">{{ pagina.start_index|add:forloop.counter0 }}</span>
+                            <span class="nome-pokemon">{{ pokemon.name|capfirst }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <div class="paginacao">
+                {% if pagina.has_previous %}
+                    <a href="{% url 'listar_pokemons' %}">Início</a>
+                    <a href="{% url 'pagina_pokemons' pagina.previous_page_number %}">Anterior</a>
+                {% endif %}
+                <span class="pagina-atual">Página {{ pagina.number }} de {{ pagina.paginator.num_pages }}</span>
+                {% if pagina.has_next %}
+                    <a href="{% url 'pagina_pokemons' pagina.next_page_number %}">Próxima</a>
+                    <a href="{% url 'pagina_pokemons' pagina.paginator.num_pages %}">Última</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

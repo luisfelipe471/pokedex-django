@@ -1,0 +1,173 @@
+:root {
+    --bg-start: #08111f;
+    --bg-end: #101d33;
+    --card-bg: #0f1728;
+    --text: #f5f7ff;
+    --muted: #9fb0c8;
+    --accent: #ff4d4d;
+    --accent-dark: #d93a3a;
+    --secondary: #30d5c8;
+    --border: #24344d;
+    --surface: #14233d;
+    --surface-strong: #1d3150;
+}
+* { box-sizing: border-box; }
+body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    background: radial-gradient(circle at top, #17253f 0%, var(--bg-start) 45%, var(--bg-end) 100%);
+    margin: 0;
+    padding: 24px;
+    color: var(--text);
+    min-height: 100vh;
+}
+.estrutura-pagina { max-width: 960px; margin: 0 auto; }
+.cartao-pagina {
+    background: linear-gradient(145deg, #101a2b, #17253d);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 18px 36px rgba(0, 0, 0, .35);
+    border: 2px solid var(--border);
+}
+.acoes-pagina { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 8px; }
+.titulo-pagina {
+    text-align: center;
+    color: #fff6a8;
+    margin: 0;
+    font-size: 2rem;
+    flex: 1;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, .25);
+}
+.subtitulo-pagina { text-align: center; color: var(--muted); margin: 8px 0 24px; }
+.formulario-busca { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+input[type="text"] {
+    padding: 12px 15px;
+    width: min(330px, 100%);
+    border-radius: 999px;
+    border: 1px solid #354a65;
+    outline: none;
+    background: #0e1726;
+    color: var(--text);
+}
+input[type="text"]:focus { border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(48,213,200,.2); }
+button, .botao-link {
+    padding: 11px 18px;
+    background: linear-gradient(135deg, var(--accent), #ff6b6b);
+    color: white;
+    border: 1px solid #ff9b9b;
+    border-radius: 999px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 8px 18px rgba(255,77,77,.22);
+    transition: transform .2s ease, box-shadow .2s ease;
+    display: inline-block;
+}
+button:hover, .botao-link:hover { transform: translateY(-1px); box-shadow: 0 12px 22px rgba(255,77,77,.28); }
+.mensagem-erro {
+    text-align: center;
+    color: #802121;
+    background: #fff7f7;
+    border: 1px solid #f4c8c8;
+    border-radius: 12px;
+    padding: 11px;
+    margin: 20px 0;
+}
+.cartao-pokemon {
+    background: linear-gradient(145deg, #121d31, #1c2f46);
+    max-width: 740px;
+    margin: 0 auto 24px;
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.24);
+    border: 1px solid var(--border);
+}
+.cabecalho-pokemon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.cabecalho-pokemon h2 { margin: 10px 0; }
+.selo-numero-pokemon {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 10px;
+    background: linear-gradient(135deg, var(--secondary), #2db6ff);
+    color: #04111f;
+    border-radius: 999px;
+    font-size: .9rem;
+    font-weight: 800;
+}
+.cartao-pokemon img { width: 170px; filter: drop-shadow(0 8px 16px rgba(23,32,51,.15)); }
+.detalhes-pokemon { display: grid; gap: 10px; }
+.secao-pokemon {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 11px 13px;
+}
+.lista-etiquetas, .lista-pokemon, .lista-atributos { list-style: none; padding: 0; margin: 8px 0 0; }
+.lista-etiquetas { display: flex; flex-wrap: wrap; gap: 8px; }
+.lista-etiquetas li {
+    background: rgba(255,255,255,.08);
+    border: 1px solid #3e5471;
+    border-radius: 999px;
+    padding: 6px 10px;
+}
+.lista-pokemon { display: grid; gap: 12px; margin: 0 0 24px; }
+.lista-pokemon a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, var(--surface), var(--surface-strong));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.lista-pokemon a:hover { transform: translateX(3px); box-shadow: 0 6px 14px rgba(48,213,200,.18); }
+.indice-pokemon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.12);
+    color: #fff6a8;
+    font-weight: 800;
+}
+.paginacao { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px; margin: 20px 0; }
+.paginacao a, .paginacao span {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--surface), var(--surface-strong));
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    font-weight: 700;
+}
+.paginacao .pagina-atual { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); color: white; border-color: var(--accent); }
+.linha-link { text-align: center; margin-top: 22px; }
+.lista-atributos { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+.lista-atributos li {
+    background: linear-gradient(135deg, var(--surface), var(--surface-strong));
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 10px;
+}
+.estado-vazio { margin: 8px 0 0; color: var(--muted); font-style: italic; }
+@media (max-width: 640px) {
+    body { padding: 14px; }
+    .cartao-pagina { padding: 20px; }
+    .cartao-pokemon { padding: 18px; }
+    .lista-atributos { grid-template-columns: 1fr; }
+    .acoes-pagina { flex-direction: column; }
+}

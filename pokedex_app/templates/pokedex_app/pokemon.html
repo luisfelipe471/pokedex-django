@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex - Busca</title>
+    <link rel="stylesheet" href="{% static 'pokedex_app/style.css' %}">
+</head>
+<body>
+    <div class="estrutura-pagina">
+        <div class="cartao-pagina">
+            <h1 class="titulo-pagina">Pokédex - Buscar Pokémon</h1>
+            <p class="subtitulo-pagina">Pesquise por nome ou número e veja informações detalhadas do seu Pokémon.</p>
+
+            <form class="formulario-busca" method="get">
+                <input type="text" name="nome" placeholder="Nome ou número" aria-label="Nome ou número do Pokémon">
+                <button type="submit">Buscar</button>
+            </form>
+
+            {% if erro %}
+                <p class="mensagem-erro">{{ erro }}</p>
+            {% endif %}
+
+            {% if dados %}
+                <div class="cartao-pokemon">
+                    <div class="cabecalho-pokemon">
+                        <div>
+                            <p class="selo-numero-pokemon">#{{ dados.id }}</p>
+                            <h2>{{ dados.name|capfirst }}</h2>
+                        </div>
+                        {% if dados.sprites.front_default %}
+                            <img src="{{ dados.sprites.front_default }}" alt="Imagem de {{ dados.name }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="detalhes-pokemon">
+                        <p><strong>Altura:</strong> {{ dados.height }}</p>
+                        <p><strong>Peso:</strong> {{ dados.weight }}</p>
+
+                        <div class="secao-pokemon">
+                            <p><strong>Tipos:</strong></p>
+                            {% if dados.types %}
+                                <ul class="lista-etiquetas">
+                                    {% for tipo in dados.types %}
+                                        <li>{{ tipo }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="estado-vazio">Nenhum tipo disponível.</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="secao-pokemon">
+                            <p><strong>Atributos básicos:</strong></p>
+                            {% if dados.stats %}
+                                <ul class="lista-atributos">
+                                    {% for stat in dados.stats %}
+                                        <li>{{ stat.nome }}: {{ stat.valor }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p class="estado-vazio">Nenhum atributo disponível.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            <div class="linha-link">
+                <a class="botao-link" href="{% url 'listar_pokemons' %}">Ver lista de Pokémon</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
